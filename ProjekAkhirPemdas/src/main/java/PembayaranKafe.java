@@ -168,19 +168,19 @@ public class PembayaranKafe {
         for (String s : menuBeli) {
             for (int j = 0; j < 5; j++) {
                 if (s.equals(menuMakanan[j][0])) {
-                    System.out.printf("%-13s: %-11s\n", s, menuMakanan[j][1]);
+                    System.out.printf("%-13s: %-11s\n", s, tampilanRupiah(Integer.parseInt(menuMakanan[j][1])));
                     int hargaMakan = Integer.parseInt(menuMakanan[j][1]);
                     totalHarga = totalHarga + hargaMakan;
                 }
                 if (s.equals(menuMinuman[j][0])) {
-                    System.out.printf("%-13s: %-11s\n", s, menuMinuman[j][1]);
+                    System.out.printf("%-13s: %-11s\n", s, tampilanRupiah(Integer.parseInt(menuMinuman[j][1])));
                     int hargaMinum = Integer.parseInt(menuMinuman[j][1]);
                     totalHarga = totalHarga + hargaMinum;
                 }
             }
         }
 
-        System.out.println("Harga Pesanan: " + totalHarga);
+        System.out.println("Harga Pesanan: " + tampilanRupiah(totalHarga));
 
     }
 
