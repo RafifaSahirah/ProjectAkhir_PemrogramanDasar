@@ -122,8 +122,8 @@ public class PembayaranKafe {
         System.out.println("Kembalian    : " + tampilanRupiah(cekKembalian(pembayaran, total)));
         System.out.println("================= Selesai ======================");
         System.out.println();
+        totalHarga = 0;
         tampilanMenu();
-
 
     }
 
