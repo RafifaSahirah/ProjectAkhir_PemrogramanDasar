@@ -105,7 +105,7 @@ public class PembayaranKafe {
         int pembayaran = s.nextInt();
         // Input hari & tanggal
         Date today = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE/dd/MM/yyyy");
         String day = sdf.format(today);
         String [] pecah = day.split("/");
         Diskon(pecah[0]);
@@ -140,16 +140,15 @@ public class PembayaranKafe {
     }
 
     private static int Diskon(String tanggal) {
-        int x = Integer.parseInt(tanggal);
         // Potongan genap
-        if (x%2==0){
+        if (tanggal.equals("Tuesday")){
             System.out.println();
             int potongan = totalHarga * 6 / 100;
             totalHarga = totalHarga - potongan;
             return potongan;
-        }else if (x%2==1){
+        }else if (tanggal.equals("Friday")){
             System.out.println();
-            int potongan = totalHarga * 5 / 100;
+            int potongan = totalHarga * 6 / 100;
             totalHarga = totalHarga - potongan;
             return potongan;
         }else{
@@ -161,7 +160,7 @@ public class PembayaranKafe {
             {"Americano", "15000"},
             {"Capucino", "17000"},
             {"Coffe latte", "16000"},
-            {"Orange Jus", "11000"},
+            {"Orange Juice", "11000"},
             {"Green Tea", "26000"}
     };
 
