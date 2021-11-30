@@ -1,4 +1,6 @@
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -102,28 +104,28 @@ public class PembayaranKafe {
         System.out.print("Uang pembayaran : Rp ");
         int pembayaran = s.nextInt();
         // Input hari & tanggal
-        System.out.print("Input hari dan tanggal (format : hari tanggal bulan tahun): ");
-        String hari = s.next();
-        int tanggal = s.nextInt();
-        int bulan = s.nextInt();
-        int tahun = s.nextInt();
-        Diskon(hari);
+        Date today = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String day = sdf.format(today);
+        String [] pecah = day.split("/");
+        Diskon(pecah[0]);
 
 
         //Output
 
         System.out.println("Nama Pemesan : " + namaPembeli);
-        System.out.println("Tanggal      : " + hari + ", " + tanggal + "/" + bulan + "/" + tahun);
+        System.out.println("Tanggal      : " + day);
         cekMenu(beli);
-        System.out.println("Diskon       : " + tampilanRupiah(Diskon(hari)));
+        System.out.println("Diskon       : " + tampilanRupiah(Diskon(pecah[0])));
         int total = totalHarga + hargaPajak(totalHarga);
         System.out.println("Pajak        : " + tampilanRupiah(hargaPajak(totalHarga)));
         System.out.println("Harga Total  : " + tampilanRupiah(total));
         System.out.println("Kembalian    : " + tampilanRupiah(cekKembalian(pembayaran, total)));
         System.out.println("================= Selesai ======================");
         System.out.println();
-        totalHarga = 0;
+        totalHarga=0;
         tampilanMenu();
+
 
     }
 
@@ -137,30 +139,38 @@ public class PembayaranKafe {
         return pembayaran * 10 / 100;
     }
 
-    private static int Diskon(String hari) {
-        if (hari.equals("Minggu")) {
+    private static int Diskon(String tanggal) {
+        int x = Integer.parseInt(tanggal);
+        // Potongan genap
+        if (x%2==0){
+            System.out.println();
+            int potongan = totalHarga * 6 / 100;
+            totalHarga = totalHarga - potongan;
+            return potongan;
+        }else if (x%2==1){
             System.out.println();
             int potongan = totalHarga * 5 / 100;
             totalHarga = totalHarga - potongan;
             return potongan;
+        }else{
+            return 0;
         }
-        return 0;
     }
 
     private static final String[][] menuMinuman = {
-            {"Americano", "13000"},
-            {"Capucino", "15000"},
-            {"Coffe latte", "15000"},
-            {"Orange Jus", "10000"},
-            {"Green Tea", "25000"}
+            {"Americano", "15000"},
+            {"Capucino", "17000"},
+            {"Coffe latte", "16000"},
+            {"Orange Jus", "11000"},
+            {"Green Tea", "26000"}
     };
 
     private static final String[][] menuMakanan = {
-            {"Beef Burger", "10000"},
-            {"Omelet", "8000"},
-            {"Carbonara", "35000"},
-            {"Sandwich", "10000"},
-            {"Nasi Goreng", "12000"}
+            {"Beef Burger", "11000"},
+            {"Omelet", "9000"},
+            {"Carbonara", "36000"},
+            {"Sandwich", "11000"},
+            {"Nasi Goreng", "13000"}
     };
 
     private static void cekMenu(String[] menuBeli) {
