@@ -29,7 +29,6 @@ public class PembayaranKafe {
             }
         }
     }
-
     public static void loginMenu() {
         Scanner s = new Scanner(System.in);
         System.out.println("============ Sistem Pembayaran Kafe Ala-Ala ============");
