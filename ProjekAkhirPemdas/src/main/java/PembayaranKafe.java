@@ -126,7 +126,6 @@ public class PembayaranKafe {
         totalHarga=0;
         tampilanMenu();
 
-
     }
 
     private static int totalHarga;
